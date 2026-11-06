@@ -56,7 +56,7 @@ public class AppEvaluacionDiaria {
 
                 }
                 case 6 -> {
-                    // listarAlumnoConRegistrosYMedia();
+                    alumnoDAO.listarAlumnoConRegistrosYMedia();
                 }
                 case 7 -> {
                     // listarAlumnadoYCalificacionDeCadaUno();
