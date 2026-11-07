@@ -3,6 +3,7 @@ package com.ejemplo.instituto.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,31 @@ public class RegistroDAOImpl implements RegistroDAO {
             e.printStackTrace();
         }
         return listaConAlumnos;
+    }
+
+    /**@author Samuel */
+    @Override
+    public List<RegistroDTO> listarRegistros() {
+        List<RegistroDTO> registros = null;
+
+        String sql = """
+                select * from registro_ejercicios
+                """;
+
+        try (Statement sentencia = con.createStatement();
+                ResultSet rs = sentencia.executeQuery(sql);) {
+
+            registros = new ArrayList<>();
+            while (rs.next()) {
+                registros.add(new RegistroDTO(rs.getString("nombre"),Date.valueOf(rs.getString("fecha")).toLocalDate(),
+                        rs.getInt("id_alumno"), rs.getInt("puntuacion")));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL: " + e.getMessage());
+        }
+
+        return registros;
     }  
     
 }

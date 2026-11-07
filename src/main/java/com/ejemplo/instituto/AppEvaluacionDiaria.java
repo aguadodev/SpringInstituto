@@ -6,7 +6,10 @@ import java.util.Scanner;
 
 import com.ejemplo.instituto.dao.AlumnoDAO;
 import com.ejemplo.instituto.dao.AlumnoDAOImpl;
+import com.ejemplo.instituto.dao.RegistroDAO;
+import com.ejemplo.instituto.dao.RegistroDAOImpl;
 import com.ejemplo.instituto.dto.AlumnoDTO;
+import com.ejemplo.instituto.dto.RegistroDTO;
 import com.ejemplo.instituto.util.JbdcUtil;
 
 public class AppEvaluacionDiaria {
@@ -15,6 +18,7 @@ public class AppEvaluacionDiaria {
         Connection con = JbdcUtil.getConnection();
         JbdcUtil.executeUpdate("BD/datosPruebas.sql", con);
         AlumnoDAO alumnoDAO = new AlumnoDAOImpl(con);
+        RegistroDAO registroDAO = new RegistroDAOImpl(con);
 
         Scanner sc = new Scanner(System.in);
         int menu = 0;
@@ -44,6 +48,12 @@ public class AppEvaluacionDiaria {
                     System.out.println(alumnoSinRegistro);
                 }
                 case 4 -> {
+                    System.out.println("\n--Listado de Registros--");
+                    List<RegistroDTO> registros = registroDAO.listarRegistros();
+                    for (RegistroDTO registroDTO : registros) {
+                        System.out.println(registroDTO.toString());
+                    }
+
                     // List<RegistroConAlumnoDTO> registroConAlumno = listarConAlumno();
                     // System.out.println(registroConAlumno);
                 }
@@ -60,7 +70,8 @@ public class AppEvaluacionDiaria {
                 }
                 case 7 -> {
                     // listarAlumnadoYCalificacionDeCadaUno();
-                } case 0 -> {
+                }
+                case 0 -> {
                     System.out.println("Saliendo del programa");
                 }
 
