@@ -48,6 +48,12 @@ public class AppEvaluacionDiaria {
                     System.out.println(alumnoSinRegistro);
                 }
                 case 4 -> {
+                    System.out.println("\n--Listado de Registros--");
+                    List<RegistroDTO> registros = registroDAO.listarRegistros();
+                    for (RegistroDTO registroDTO : registros) {
+                        System.out.println(registroDTO.toString());
+                    }
+
                     // List<RegistroConAlumnoDTO> registroConAlumno = listarConAlumno();
                     // System.out.println(registroConAlumno);
                 }
@@ -89,7 +95,8 @@ public class AppEvaluacionDiaria {
                 }
                 case 7 -> {
                     // listarAlumnadoYCalificacionDeCadaUno();
-                } case 0 -> {
+                }
+                case 0 -> {
                     System.out.println("Saliendo del programa");
                 }
 
