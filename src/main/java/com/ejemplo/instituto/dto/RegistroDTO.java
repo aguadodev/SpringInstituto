@@ -3,11 +3,12 @@ package com.ejemplo.instituto.dto;
 import java.time.LocalDate;
 
 public class RegistroDTO {
-    int id, id_alumno, puntuacion;
+    int id, id_alumno;
     String nombre;
     LocalDate fecha;
+    Integer puntuacion;
 
-    public RegistroDTO(String nombre, LocalDate fecha, int id_alumno, int puntuacion) {
+    public RegistroDTO(String nombre, LocalDate fecha, int id_alumno, Integer puntuacion) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.id_alumno = id_alumno;
@@ -30,11 +31,11 @@ public class RegistroDTO {
         this.id_alumno = id_alumno;
     }
 
-    public int getPuntuacion() {
+    public Integer getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(int puntuacion) {
+    public void setPuntuacion(Integer puntuacion) {
         this.puntuacion = puntuacion;
     }
 

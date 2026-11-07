@@ -34,7 +34,12 @@ public class RegistroDAOImpl implements RegistroDAO {
             ps.setString(1, registro.getNombre());
             ps.setDate(2, Date.valueOf(registro.getFecha()));
             ps.setInt(3, registro.getId_alumno());
-            ps.setInt(4, registro.getPuntuacion());
+            
+            if (registro.getPuntuacion() != null) {
+                ps.setInt(4, registro.getPuntuacion());
+            } else {
+                ps.setNull(4, java.sql.Types.INTEGER);
+            }
 
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
